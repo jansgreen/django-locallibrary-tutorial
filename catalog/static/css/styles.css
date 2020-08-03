@@ -1,6 +1,35 @@
-.sidebar-nav {
-    margin-top: 20px;
-    padding: 0;
-    list-style: none;
+html {
+  width: 100%;
 }
 
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav > li {
+  text-decoration: none;
+  color: #f4f4f4f4;
+}
+
+.nav_bar {
+  float: left;
+  margin-left: 2%;
+  margin-bottom: 4%;
+}
+.nav_bar > a {
+    font-size: x-large;
+    text-align: center;
+    text-transform: capitalize;
+  text-decoration: none;
+  color: aliceblue;
+}
+.user_menu{
+    
+}
