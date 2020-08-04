@@ -28,10 +28,10 @@ class Movies(models.Model):
 
     
     def __str__(self):
-        return self.Title
+        return self.title
 
     def get_date(self):
-        return self.Release_date
+        return self.release_date
 
 
 class Genre(models.Model):

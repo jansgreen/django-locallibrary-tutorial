@@ -53,9 +53,10 @@
           <li class="nav_bar"><a href="{% url 'login'%}?next={{request.path}}">Register</a></li>
 
           {% endif %}
-          <li class="nav_bar"><a href="{% url 'authors' %}">
-              <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          {% csrf_token %}
+          <li class="nav_bar">
+              <form method="GET" class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="Search">
                 <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
               </form>
           </li>

@@ -43,6 +43,13 @@ a:active {
   text-decoration: none;
   color: aliceblue;
 }
-.user_menu{
-    
+
+.index_galery{
+    display: flex;
+    position: fixed;
+    align-self: center;
+}
+
+.card-title{
+    color: black;
 }

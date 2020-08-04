@@ -1,4 +1,3 @@
-from . import API
 from django.shortcuts import render, redirect, reverse
 from .models import Movies
 from django.core.paginator import Paginator
@@ -36,12 +35,11 @@ def index(request):
 
     
     
-    print(API.get_movies())
     search = request.GET.get("Search")
-    galeries = Movies.objects.all().order_by('Title')
+    galeries = Movies.objects.all().order_by('title')
     if search:
         galeries = Movies.objects.filter(
-            Q(Title__icontains = search) | Q(Release_date__icontains = search)
+            Q(title__icontains = search) | Q(release_date__icontains = search)
             ).distinct()
             
         if not galeries:

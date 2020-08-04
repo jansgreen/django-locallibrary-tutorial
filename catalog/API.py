@@ -12,10 +12,8 @@ response = requests.get(
 
 class get_movies():
     movies = response.text
-    print(movies)
     movie_json = json.loads(movies)
-    theater = {}
-    theater['Movie'] = []
+    theater = []
     x = 0
 
     for movie in movie_json['results']:
@@ -31,27 +29,27 @@ class get_movies():
         backdrop = movie['backdrop_path']
         Language = movie['original_language']
         original_title = ['original_title']
-        genreids = movie['genre_ids']
+        #genreids = movie['genre_ids']
         title =  movie['title']
         vote_average = movie['vote_average']
         overview = movie['overview']
         release_date = movie['release_date']
 
 
-        theater['Movie'].append({
-        "model": "catalog.movie",
+        theater.append({
+        "model": "catalog.Movies",
         "pk":x,
         "fields": {
         'popularity': popularity,
         'vote': vote,
         'video': video,
-        'poster': poster,
+        'poster': 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'+poster,
         'TheatreId': TheatreId,
         'adult':  adult,
-        'backdrop': backdrop,
+        'backdrop': 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'+backdrop,
         'Language': Language,
         'original_title': original_title,
-        'genreids': genreids,
+        #'genreids': genreids,
         'title': title,
         'vote_average':vote_average,
         'overview': overview,

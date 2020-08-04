@@ -1,4 +1,4 @@
-console.log("Hola mundo");
+/*console.log("Hola mundo");
 class api_url {
     constructor() {
       this.Get_access = "https://api.themoviedb.org/3/discover/movie?";
@@ -26,4 +26,4 @@ $(document).ready(function () {
     let data = new api_url();
     data.theatres();
             
-    });
+    });*/
