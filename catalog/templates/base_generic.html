@@ -62,7 +62,6 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav_bar"><a href="{% url 'logout'%}?next={{request.path}}">{{ user.get_username }}</a></li>
-          <li class="nav_bar"><a href="">Logout</a></li>
           <nav class="nav_bar">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>

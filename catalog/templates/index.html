@@ -3,10 +3,10 @@
 {% load static %}
 
 {% block content %}
-<article>
-  <div class="position-relative">
-    <div class="d-flex justify-content-center">
-      <div class="row">
+<section>
+  <div class="position-relative index_galery">
+    <div class="container-fluid">
+      <div class="row align-items-center ">
         <div class="col col-lg-1">
           {% if page_obj.has_previous %}
           <div class="carousel slide" data-ride="carousel">
@@ -23,7 +23,7 @@
           {# Each "movie" is a movie model object. #}
           {% csrf_token %}
           <div class="col-md-auto">
-            <div class="card" style="width: 15rem;">
+            <div class="card" style="width: 13rem;">
               <div class="card-body">
                 <img src="{{movie.poster}}" class="card-img-top" alt="{{movie.title}}">
                 <h6 class="card-title">{{movie.title|upper}}</h6>
@@ -47,6 +47,5 @@
       </div>
     </div>
   </div>
-</article>
-
+  </section>
 {% endblock %}

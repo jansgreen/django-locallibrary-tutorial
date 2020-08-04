@@ -44,7 +44,7 @@ def index(request):
             
         if not galeries:
             messages.add_message(request, messages.INFO, 'The movie '+search+' you looking far is not found!')
-    paginator = Paginator(galeries, 4)
+    paginator = Paginator(galeries, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {

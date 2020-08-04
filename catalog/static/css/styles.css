@@ -1,5 +1,6 @@
 html {
   width: 99.2%;
+  height: 100%;
 }
 body{
     background: url('/static/images/mkInit.jpg') no-repeat center center fixed;
@@ -45,11 +46,19 @@ a:active {
 }
 
 .index_galery{
-    display: flex;
-    position: fixed;
-    align-self: center;
+    margin-top: 5%;
+    margin-left: 5%;
 }
 
 .card-title{
     color: black;
+}
+
+.showInrow{
+    width: 100%;
+}
+
+.show_box{
+    width: 100%;
+    max-height: 75%;
 }
