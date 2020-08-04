@@ -5,6 +5,33 @@ from django.db import models
 from django.urls import reverse  # To generate URLS by reversing URL patterns
 
 
+from django.db import models
+
+# Create your models here.
+class galery(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'galery'
+
+
+    Poster_path =models.URLField(max_length=1024, null=True, blank=True)
+    Backdrop_path =models.URLField(max_length=1024, null=True, blank=True)
+    Original_language =models.CharField(max_length=5, null=True, blank=True)
+    Original_title =models.CharField(max_length=254, null=True, blank=True)
+    Title =models.CharField(max_length=254, null=True, blank=True)
+    Overview =models.TextField(max_length=554, null=True, blank=True)
+    Release_date =models.DateField(null=True, blank=True)
+
+
+
+    
+    def __str__(self):
+        return self.Title
+
+    def get_date(self):
+        return self.Release_date
+
+
 class Genre(models.Model):
     """Model representing a book genre (e.g. Science Fiction, Non Fiction)."""
     name = models.CharField(

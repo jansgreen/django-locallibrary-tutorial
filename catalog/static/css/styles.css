@@ -1,5 +1,18 @@
 html {
-  width: 100%;
+  width: 99.2%;
+}
+body{
+    background: url('/static/images/mkInit.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh -164px);
+    color: #f4f4f4f4;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+
+header{
+    display: none;
 }
 
 a:link,

@@ -1,34 +1,87 @@
-from django.shortcuts import render
+from . import API
+from django.shortcuts import render, redirect, reverse
+from .models import galery
+from django.core.paginator import Paginator
+from django.db.models import Q
+from django.contrib import messages
+from django.views import generic
+from .models import Book, Author, BookInstance, Genre
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+import datetime
+from django.contrib.auth.decorators import permission_required
+
+# from .forms import RenewBookForm
+from catalog.forms import RenewBookForm
+
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Author
+
+
+
+
+# Search GitHub's repositories for requests
+
 
 # Create your views here.
 
-from .models import Book, Author, BookInstance, Genre
-
 
 def index(request):
-    """View function for home page of site."""
-    # Generate counts of some of the main objects
-    num_books = Book.objects.all().count()
-    num_instances = BookInstance.objects.all().count()
-    # Available copies of books
-    num_instances_available = BookInstance.objects.filter(status__exact='a').count()
-    num_authors = Author.objects.count()  # The 'all()' is implied by default.
+    """ A view to show all products, including sorting and search queries """ 
 
-    # Number of visits to this view, as counted in the session variable.
-    num_visits = request.session.get('num_visits', 0)
-    request.session['num_visits'] = num_visits+1
+    
+    
+    print(API.get_movies())
+   # search = request.GET.get("Search")
+    #galeries = galery.objects.all().order_by('Title')
+    #if search:
+    #    galeries = galery.objects.filter(
+    #        Q(Title__icontains = search) | Q(Release_date__icontains = search)
+     #   ).distinct()
+      #  if not galeries:
+       #     messages.add_message(request, messages.INFO, 'The movie '+search+' you looking far is not found!')
+#
+ #   paginator = Paginator(galeries, 4)
+  #  page_number = request.GET.get('page')
+   # page_obj = paginator.get_page(page_number)
+#
+ #   context = {
+  #      'page_obj': page_obj,
+   # }
+    #return render(request, 'home/index.html', context)
+    return render(request, 'index.html')
 
-    # Render the HTML template index.html with the data in the context variable.
-    return render(
-        request,
-        'index.html',
-        context={'num_books': num_books, 'num_instances': num_instances,
-                 'num_instances_available': num_instances_available, 'num_authors': num_authors,
-                 'num_visits': num_visits},
-    )
 
 
-from django.views import generic
+
+#def index(request):
+#    """View function for home page of site."""
+#    # Generate counts of some of the main objects
+#    num_books = Book.objects.all().count()
+#    num_instances = BookInstance.objects.all().count()
+#    # Available copies of books
+#    num_instances_available = BookInstance.objects.filter(status__exact='a').count()
+#    num_authors = Author.objects.count()  # The 'all()' is implied by default.
+#
+#    # Number of visits to this view, as counted in the session variable.
+#    num_visits = request.session.get('num_visits', 0)
+#    request.session['num_visits'] = num_visits+1
+#
+#    # Render the HTML template index.html with the data in the context variable.
+#    return render(
+#        request,
+#        'index.html',
+#        context={'num_books': num_books, 'num_instances': num_instances,
+#                 'num_instances_available': num_instances_available, 'num_authors': num_authors,
+#                 'num_visits': num_visits},
+#    )
+
+
 
 
 class BookListView(generic.ListView):
@@ -53,7 +106,6 @@ class AuthorDetailView(generic.DetailView):
     model = Author
 
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
@@ -67,7 +119,6 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
 
 
 # Added as part of challenge!
-from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
@@ -81,14 +132,7 @@ class LoanedBooksAllListView(PermissionRequiredMixin, generic.ListView):
         return BookInstance.objects.filter(status__exact='o').order_by('due_back')
 
 
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-import datetime
-from django.contrib.auth.decorators import permission_required
 
-# from .forms import RenewBookForm
-from catalog.forms import RenewBookForm
 
 
 @permission_required('catalog.can_mark_returned')
@@ -124,9 +168,6 @@ def renew_book_librarian(request, pk):
     return render(request, 'catalog/book_renew_librarian.html', context)
 
 
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-from .models import Author
 
 
 class AuthorCreate(PermissionRequiredMixin, CreateView):
