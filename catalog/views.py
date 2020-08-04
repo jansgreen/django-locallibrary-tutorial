@@ -1,6 +1,6 @@
 from . import API
 from django.shortcuts import render, redirect, reverse
-from .models import galery
+from .models import Movies
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib import messages
@@ -37,24 +37,22 @@ def index(request):
     
     
     print(API.get_movies())
-   # search = request.GET.get("Search")
-    #galeries = galery.objects.all().order_by('Title')
-    #if search:
-    #    galeries = galery.objects.filter(
-    #        Q(Title__icontains = search) | Q(Release_date__icontains = search)
-     #   ).distinct()
-      #  if not galeries:
-       #     messages.add_message(request, messages.INFO, 'The movie '+search+' you looking far is not found!')
-#
- #   paginator = Paginator(galeries, 4)
-  #  page_number = request.GET.get('page')
-   # page_obj = paginator.get_page(page_number)
-#
- #   context = {
-  #      'page_obj': page_obj,
-   # }
-    #return render(request, 'home/index.html', context)
-    return render(request, 'index.html')
+    search = request.GET.get("Search")
+    galeries = Movies.objects.all().order_by('Title')
+    if search:
+        galeries = Movies.objects.filter(
+            Q(Title__icontains = search) | Q(Release_date__icontains = search)
+            ).distinct()
+            
+        if not galeries:
+            messages.add_message(request, messages.INFO, 'The movie '+search+' you looking far is not found!')
+    paginator = Paginator(galeries, 4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj,
+        }
+    return render(request, 'index.html', context)
 
 
 

@@ -4,24 +4,26 @@ from django.db import models
 
 from django.urls import reverse  # To generate URLS by reversing URL patterns
 
-
-from django.db import models
-
 # Create your models here.
-class galery(models.Model):
+class Movies(models.Model):
 
     class Meta:
-        verbose_name_plural = 'galery'
+        verbose_name_plural = 'Movies'
 
-
-    Poster_path =models.URLField(max_length=1024, null=True, blank=True)
-    Backdrop_path =models.URLField(max_length=1024, null=True, blank=True)
-    Original_language =models.CharField(max_length=5, null=True, blank=True)
-    Original_title =models.CharField(max_length=254, null=True, blank=True)
-    Title =models.CharField(max_length=254, null=True, blank=True)
-    Overview =models.TextField(max_length=554, null=True, blank=True)
-    Release_date =models.DateField(null=True, blank=True)
-
+    popularity = models.IntegerField(default=0, null=True, blank=True)
+    vote = models.IntegerField(default=0, null=True, blank=True)
+    video = models.BooleanField(default=False, null=True, blank=True)
+    poster = models.URLField(max_length=1024, null=True, blank=True)
+    TheatreId = models.IntegerField(default=0, null=True, blank=True)
+    adult =models.BooleanField(default=False, null=True, blank=True)
+    backdrop =models.URLField(max_length=1024, null=True, blank=True)
+    Language =models.CharField(max_length=5, null=True, blank=True)
+    original_title =models.CharField(max_length=254, null=True, blank=True)
+    genreids = models.IntegerField(default=0, null=True, blank=True)
+    title =models.CharField(max_length=254, null=True, blank=True)
+    vote_average = models.IntegerField(default=0, null=True, blank=True)
+    overview = models.TextField(max_length=554, null=True, blank=True)
+    release_date =models.DateField(null=True, blank=True)
 
 
     

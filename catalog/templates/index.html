@@ -8,7 +8,7 @@
 
 
 
-<div class="container galery_box justify-content-md-center">
+<div class="container movie_box justify-content-md-center">
   <div class="row ">
     <div class="col col-lg-1">
       {% if page_obj.has_previous %}
@@ -21,14 +21,14 @@
         {% endif %}
     </div>
 <div class="row">
-      {% for galery in page_obj %}
-      {# Each "galery" is a galery model object. #}
+      {% for movie in page_obj %}
+      {# Each "movie" is a movie model object. #}
       <div class="col-md-auto">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
-          <img src="{{galery.Poster_path}}" class="card-img-top" alt="{{galery.Title}}">
-          <h5 class="card-title">{{galery.Title|upper}}</h5>
-          <div class="alert alert-info">{{galery.Release_date}}</div> 
+          <img src="{{movie.Poster_path}}" class="card-img-top" alt="{{movie.Title}}">
+          <h5 class="card-title">{{movie.Title|upper}}</h5>
+          <div class="alert alert-info">{{movie.Release_date}}</div> 
         </div>
       </div>
     </div>

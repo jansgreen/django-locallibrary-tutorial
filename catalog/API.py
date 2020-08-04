@@ -1,3 +1,4 @@
+import os
 import json
 import requests
 
@@ -11,25 +12,52 @@ response = requests.get(
 
 class get_movies():
     movies = response.text
+    print(movies)
     movie_json = json.loads(movies)
-    print(movie_json['page'])
+    theater = {}
+    theater['Movie'] = []
+    x = 0
 
-    for client in movie_json['results']:
-        print('popularity:', client['popularity'])
-        print('vote:', client['vote_count'])
-        print('video:', client['video'])
-        print('poster:', client['poster_path'])
-        print('id:', client['id'])
-        print('adult:', client['adult'])
-        print('backdrop:', client['backdrop_path'])
-        print('Language:', client['original_language'])
-        print('genre ids:', client['genre_ids'])
-        print('title:', client['title'])
-        print('vote average:', client['vote_average'])
-        print('overview:', client['overview'])
-        print('release_date:', client['release_date'])
+    for movie in movie_json['results']:
+
+   
+        x +=1
+        popularity = movie['popularity']
+        vote = movie['vote_count']
+        video = movie['video']
+        poster = movie['poster_path']
+        TheatreId = movie['id']
+        adult =  movie['adult']
+        backdrop = movie['backdrop_path']
+        Language = movie['original_language']
+        original_title = ['original_title']
+        genreids = movie['genre_ids']
+        title =  movie['title']
+        vote_average = movie['vote_average']
+        overview = movie['overview']
+        release_date = movie['release_date']
 
 
+        theater['Movie'].append({
+        "model": "catalog.movie",
+        "pk":x,
+        "fields": {
+        'popularity': popularity,
+        'vote': vote,
+        'video': video,
+        'poster': poster,
+        'TheatreId': TheatreId,
+        'adult':  adult,
+        'backdrop': backdrop,
+        'Language': Language,
+        'original_title': original_title,
+        'genreids': genreids,
+        'title': title,
+        'vote_average':vote_average,
+        'overview': overview,
+        'release_date': release_date
+        }
+        })
 
-  
-
+        with open('./catalog/fixtures/movie.json', 'w') as file:
+            json.dump(theater, file, indent=4) 
