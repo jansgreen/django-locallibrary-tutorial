@@ -1,0 +1,10 @@
+{% extends "baseTem.html" %}
+{% load static %}
+{% load i18n %}
+{% load account %}
+<article>
+    <div class="allauth_css">
+{% user_display user as user_display %}
+<p><strong>{% trans "Note" %}:</strong> {% blocktrans %}you are already logged in as {{ user_display }}.{% endblocktrans %}</p>
+</div>
+</article>

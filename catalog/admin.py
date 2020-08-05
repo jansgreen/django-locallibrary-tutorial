@@ -1,10 +1,9 @@
 from django.contrib import admin
-from .models import Movies
+from .models import Movies, Author, Genre, Book, BookInstance, Language
 
 
 # Register your models here.
 
-from .models import Author, Genre, Book, BookInstance, Language
 
 """Minimal registration of Models.
 admin.site.register(Book)
@@ -16,7 +15,21 @@ admin.site.register(Language)
 
 admin.site.register(Genre)
 admin.site.register(Language)
-admin.site.register(Movies)
+
+
+class MoviesAdmin(admin.ModelAdmin):
+    list_display = (
+        'TheatreId',
+        'title',
+        'Language',
+        'release_date',
+        'backdrop',
+    )
+    
+    ordering = ('TheatreId',)
+
+admin.site.register(Movies, MoviesAdmin)
+
 
 
 

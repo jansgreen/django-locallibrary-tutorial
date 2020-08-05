@@ -41,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add our new application 
-    'catalog.apps.CatalogConfig', #This object was created for us in /catalog/apps.py
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django.contrib.sites',
+    'catalog.apps.CatalogConfig',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +76,15 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
 
 WSGI_APPLICATION = 'locallibrary.wsgi.application'
 

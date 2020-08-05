@@ -5,13 +5,31 @@ import requests
 
 
 # Search GitHub's repositories for requests
-response = requests.get(
-    'https://api.themoviedb.org/3/discover/movie?api_key=fcbf9f302d5fcc8a3d775556c623b770&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22'
-)
 
 
-class get_movies():
-    movies = response.text
+class Url_api():
+    api_url = requests.get('https://api.themoviedb.org')
+    api_key = 'api_key=fcbf9f302d5fcc8a3d775556c623b770'
+    discover = '/3/discover/movie?'
+    theater = '&primary_release_date.gte=2014-09-15&primary_release_date.lte=2014-10-22'
+    popular = 'sort_by=popularity.desc'
+    rite = 'certification_country=US&certification=R&sort_by=vote_average.desc'
+    kids = 'certification_country=US&certification.lte=G&sort_by=popularity.desc'
+    year = 'primary_release_year=2010&sort_by=vote_average.desc'
+    drama = 'with_genres=18&primary_release_year=2014'
+    fiction = 'with_genres=878&with_cast=500&sort_by=vote_average.desc'
+    comedia = 'with_genres=35&with_cast=23659&sort_by=revenue.desc'
+    gend = '/genre/movie/list'
+
+    def on_Theater(self):
+        Theater = api_url+discover+api_key
+        return self.Theater
+
+
+
+
+def get_movies(request):
+    movies = Theater
     movie_json = json.loads(movies)
     theater = []
     x = 0

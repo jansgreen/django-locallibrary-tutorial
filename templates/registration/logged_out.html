@@ -1,7 +1,17 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<p>Logged out!</p>  
+<section>
+    <div class="container allauth_css">
+        <div class="row align-items-center">
+            <div class="bg-primary login_header">
+                <h2>Logged out!</h2>
+            </div>
+            <div class="col-12 form_center">
+                <a href="{% url 'login'%}" class="btn btn-primary">Click here to login again.</a>
+            </div>
+        </div>
+    </div>
 
-<a href="{% url 'login'%}">Click here to login again.</a>
+</section>
 {% endblock %}

@@ -3,8 +3,8 @@
         "model": "catalog.Movies",
         "pk": 1,
         "fields": {
-            "popularity": 45.89,
-            "vote": 9959,
+            "popularity": 48.357,
+            "vote": 9960,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qq8xf2SQqHifUUyc0k6Hj1065f1.jpg",
             "TheatreId": 244786,
@@ -24,8 +24,8 @@
         "model": "catalog.Movies",
         "pk": 2,
         "fields": {
-            "popularity": 45.798,
-            "vote": 12934,
+            "popularity": 45.327,
+            "vote": 12936,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tQf4DUygWo64AOuqgk4jEDCE3Ws.jpg",
             "TheatreId": 210577,
@@ -45,7 +45,7 @@
         "model": "catalog.Movies",
         "pk": 3,
         "fields": {
-            "popularity": 41.231,
+            "popularity": 38.418,
             "vote": 6003,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9u4yW7yPA0BQ2pv9XwiNzItwvp8.jpg",
@@ -66,8 +66,8 @@
         "model": "catalog.Movies",
         "pk": 4,
         "fields": {
-            "popularity": 39.512,
-            "vote": 8236,
+            "popularity": 40.251,
+            "vote": 8237,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/pfte7wdMobMF4CVHuOxyu6oqeeA.jpg",
             "TheatreId": 228150,
@@ -87,8 +87,8 @@
         "model": "catalog.Movies",
         "pk": 5,
         "fields": {
-            "popularity": 35.63,
-            "vote": 918,
+            "popularity": 40.672,
+            "vote": 919,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6UrNb7sdolnuqxBJ4I8OxTUvTmQ.jpg",
             "TheatreId": 72784,
@@ -108,8 +108,8 @@
         "model": "catalog.Movies",
         "pk": 6,
         "fields": {
-            "popularity": 31.784,
-            "vote": 1958,
+            "popularity": 40.564,
+            "vote": 1959,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/bQTHTZezSudf27mMQtedHf1XpgO.jpg",
             "TheatreId": 169917,
@@ -129,7 +129,7 @@
         "model": "catalog.Movies",
         "pk": 7,
         "fields": {
-            "popularity": 25.366,
+            "popularity": 22.487,
             "vote": 1121,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/h7SEtIWOfLsuCWhQgflev7ppRPq.jpg",
@@ -150,7 +150,7 @@
         "model": "catalog.Movies",
         "pk": 8,
         "fields": {
-            "popularity": 24.996,
+            "popularity": 25.209,
             "vote": 285,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/efsgCTlofzIuysfokEp7hwQnUho.jpg",
@@ -171,8 +171,8 @@
         "model": "catalog.Movies",
         "pk": 9,
         "fields": {
-            "popularity": 24.704,
-            "vote": 4517,
+            "popularity": 30.663,
+            "vote": 4518,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2HOd431LX9ggqSpBIJ7qyYhATyo.jpg",
             "TheatreId": 200727,
@@ -192,8 +192,8 @@
         "model": "catalog.Movies",
         "pk": 10,
         "fields": {
-            "popularity": 22.83,
-            "vote": 2834,
+            "popularity": 23.494,
+            "vote": 2835,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tefUxj4Gg9hgQNgfEYd7kJQrIlD.jpg",
             "TheatreId": 205587,
@@ -213,8 +213,8 @@
         "model": "catalog.Movies",
         "pk": 11,
         "fields": {
-            "popularity": 21.501,
-            "vote": 13028,
+            "popularity": 17.629,
+            "vote": 13030,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fZPSd91yGE9fCcCe6OoQr6E3Bev.jpg",
             "TheatreId": 245891,
@@ -234,7 +234,7 @@
         "model": "catalog.Movies",
         "pk": 12,
         "fields": {
-            "popularity": 21.25,
+            "popularity": 27.922,
             "vote": 900,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/b9Q2WR62yB5Aq0hd6kyRFS9cc3Y.jpg",
@@ -255,8 +255,8 @@
         "model": "catalog.Movies",
         "pk": 13,
         "fields": {
-            "popularity": 20.707,
-            "vote": 4297,
+            "popularity": 23.682,
+            "vote": 4298,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/yLsuU2P2SpDYFwtZQ7dtfVAf6TE.jpg",
             "TheatreId": 250546,
@@ -276,8 +276,8 @@
         "model": "catalog.Movies",
         "pk": 14,
         "fields": {
-            "popularity": 20.318,
-            "vote": 514,
+            "popularity": 21.357,
+            "vote": 515,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4B2FLN0c2vY6im3Oe2ZkYftulmq.jpg",
             "TheatreId": 277547,
@@ -297,8 +297,8 @@
         "model": "catalog.Movies",
         "pk": 15,
         "fields": {
-            "popularity": 20.081,
-            "vote": 923,
+            "popularity": 17.219,
+            "vote": 924,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/nMHCJiVFjUmQWC116Ze96u5IhfX.jpg",
             "TheatreId": 284427,
@@ -318,7 +318,7 @@
         "model": "catalog.Movies",
         "pk": 16,
         "fields": {
-            "popularity": 19.667,
+            "popularity": 13.457,
             "vote": 621,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hJ5o5lSbpwQzoqj8pJizhgfjdZX.jpg",
@@ -339,8 +339,8 @@
         "model": "catalog.Movies",
         "pk": 17,
         "fields": {
-            "popularity": 19.453,
-            "vote": 570,
+            "popularity": 19.775,
+            "vote": 571,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4HngNLzCmUYCPB8FbxSZWN0eDKM.jpg",
             "TheatreId": 255343,
@@ -360,7 +360,7 @@
         "model": "catalog.Movies",
         "pk": 18,
         "fields": {
-            "popularity": 18.5,
+            "popularity": 18.032,
             "vote": 160,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/fAERrD6vvmznDoL99wlgjhSfPcH.jpg",
@@ -381,7 +381,7 @@
         "model": "catalog.Movies",
         "pk": 19,
         "fields": {
-            "popularity": 17.459,
+            "popularity": 19.776,
             "vote": 1465,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/c3t2toMUNypdBiFAUETrpYK2otD.jpg",
@@ -402,7 +402,7 @@
         "model": "catalog.Movies",
         "pk": 20,
         "fields": {
-            "popularity": 17.417,
+            "popularity": 19.767,
             "vote": 1283,
             "video": false,
             "poster": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/s84I8nXQvB1dOFuOqcRzGSMn80T.jpg",
