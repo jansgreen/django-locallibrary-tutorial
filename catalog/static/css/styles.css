@@ -119,12 +119,22 @@ p {
 
 .login_header {
   width: 100%;
+  padding: 2% 0 2% 0;
+  background-color: #00a2ff;
+  border: 4px;
 }
 
 .login_header > h2 {
   text-align: center;
 }
-label{
+label {
   color: #000000;
+}
 
+.allauth_body{
+  margin: 5% 0 2% 2%;
+}
+
+.allauth_body > p{
+  margin: 0 20% 20% 20%;
 }

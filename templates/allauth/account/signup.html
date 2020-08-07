@@ -5,9 +5,15 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<article>
+<section>
+
   <div class="allauth_css">
-<h1>{% trans "Sign Up" %}</h1>
+    <div class="login_header">
+
+      <h2>{% trans "Sign Up" %}</h2>
+
+    </div>
+    <div class="allauth_body">
 
 <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
 
@@ -20,6 +26,7 @@
   <button type="submit" class="btn btn-primary">{% trans "Sign Up" %} &raquo;</button>
 </form>
 </div>
-</article>
+</div>
+</section>
 
 {% endblock %}
