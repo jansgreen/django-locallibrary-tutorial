@@ -39,3 +39,7 @@ urlpatterns += [
     path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book_update'),
     path('book/<int:pk>/delete/', views.BookDelete.as_view(), name='book_delete'),
 ]
+
+urlpatterns += [
+    path('<movie_title>', views.a_movie, name='a_movie'),
+]

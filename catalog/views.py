@@ -12,6 +12,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 import datetime
 from django.contrib.auth.decorators import permission_required
+from . import API
 
 # from .forms import RenewBookForm
 from catalog.forms import RenewBookForm
@@ -32,6 +33,8 @@ from .models import Author
 
 def index(request):
     """ A view to show all products, including sorting and search queries """ 
+    api = API.get_movies()
+
 
     
     
@@ -51,6 +54,18 @@ def index(request):
         'page_obj': page_obj,
         }
     return render(request, 'index.html', context)
+
+
+def a_movie(request, movie_title):
+    galeries = Movies.objects.all().order_by('title')
+    if movie_title:
+        galeries = Movies.objects.filter(
+        Q(title__icontains = movie_title) | Q(release_date__icontains = movie_title)
+        ).distinct()
+        context = {
+          'galeries' : galeries 
+        }
+        return render(request, 'Amovie.html', context)
 
 
 

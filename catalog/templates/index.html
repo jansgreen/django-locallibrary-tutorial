@@ -21,7 +21,8 @@
         <div class="row">
           {% for movie in page_obj %}
           {# Each "movie" is a movie model object. #}
-          {% csrf_token %}
+          <a href="{% url 'a_movie' movie.title %}">
+
           <div class="col-md-auto">
             <div class="card" style="width: 13rem;">
               <div class="card-body">
@@ -31,6 +32,7 @@
               </div>
             </div>
           </div>
+        </a>
           {% endfor %}
         </div>
         <div class="col col-lg-1">

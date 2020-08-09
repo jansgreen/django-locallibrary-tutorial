@@ -1,12 +1,25 @@
-{% extends "account/base.html" %}
-
+{% extends "base_generic.html" %}
+{% load static %}
 {% load i18n %}
 
 {% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
 
 {% block content %}
+<div class="row no-gutters vertical_menu">
+  <div class="col-sm-6 col-md-2"> 
+    <nav class="navbar-dark bg-dark">
+      {% include "menu.html"%}
+    </nav>
+
+</div>
+<div class="col-sm-6 col-md-10">
+  <div class="allauth_css">
+    <div class="menu_container">
+<div class="login_header">   
     <h1>{% trans "E-mail Addresses" %}</h1>
+  </div> 
 {% if user.emailaddress_set.all %}
+<div class="allauth_body"> 
 <p>{% trans 'The following e-mail addresses are associated with your account:' %}</p>
 
 <form action="{% url 'account_email' %}" class="email_list" method="post">
@@ -52,7 +65,11 @@
         {{ form.as_p }}
         <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
     </form>
-
+  </div>
+</div>
+</div>
+</div>
+</div>
 {% endblock %}
 
 
@@ -70,4 +87,6 @@
   }
 })();
 </script>
+
+
 {% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+{% load i18n %}
+{% block nav_content %}
+<div class="vertical_menu">
+    <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'account_email'%}?next={{request.path}}">Email</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_email_verification_sent'%}?next={{request.path}}">Email Confirm</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_change_password'%}?next={{request.path}}">account_change_password</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_set_password'%}?next={{request.path}}">account_set_password</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_reset_password_done'%}?next={{request.path}}">account_inactive</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_email_verification_sent'%}?next={{request.path}}">account_email_verification_sent</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_reset_password'%}?next={{request.path}}">account_reset_password</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_reset_password_from_key_done'%}?next={{request.path}}">account_reset_password_from_key_done</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'account_reset_password_from_key_done'%}?next={{request.path}}">account_reset_password_from_key_done</a>
+    </li>
+  </ul>
+</div>
+
+
+
+{% endblock %}

@@ -1,14 +1,25 @@
-{% extends "account/base.html" %}
-
+{% extends "base_generic.html" %}
+{% load static %}
 {% load i18n %}
-{% load account %}
 
 {% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
 
 
 {% block content %}
+<div class="row no-gutters vertical_menu">
+    <div class="col-sm-6 col-md-2"> 
+      <nav class="navbar-dark bg-dark">
+        {% include "menu.html"%}
+      </nav>
+  
+  </div>
+  <div class="col-sm-6 col-md-10">
+    <div class="allauth_css">
+        <div class="menu_container">
+    <div class="login_header">
 <h1>{% trans "Confirm E-mail Address" %}</h1>
-
+    </div>
+    <div class="allauth_body"> 
 {% if confirmation %}
 
 {% user_display confirmation.email_address.user as user_display %}
@@ -27,5 +38,5 @@
 <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
 
 {% endif %}
-
+    </div>
 {% endblock %}

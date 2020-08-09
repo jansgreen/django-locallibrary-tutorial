@@ -147,6 +147,8 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 SIGNUP_URL = '/accounts/signup/'
+MENU_URL = '/accounts/menu/'
+
 
 
 # Heroku: Update database configuration from $DATABASE_URL.

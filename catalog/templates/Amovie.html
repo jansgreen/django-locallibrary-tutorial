@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row align-items-center">
+        {% for movie in galeries %}
+        {# Each "movie" is a movie model object. #}
+        <div class="col-12">
+            <div class="card mb-3" style="max-width: 77%; margin-top: 2%; margin-bottom: 10%;">
+                <div class="row no-gutters">
+                    <div class="col-md-7">
+                        <img src="{{movie.poster}}" class="card-img" alt="{{movie.title|upper}}">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{movie.title|upper}}</h5>
+                            <p class="card-text">Overview : {{movie.overview}}</p>
+                            <p class="card-text">Language : {{movie.Language}}</p>
+                            <p class="card-text"><strong class="text-muted">Price : ${{movie.Language}}</p></strong>
+
+
+                            <p class="card-text"><small class="text-muted">Date: {{movie.release_date}}</small></p>
+                            <p class="card-text"><small class="text-muted">Vote: {{movie.vote}}</small></p>
+                            <p class="card-text"><small class="text-muted">Clasification: {{movie.adult}}</small></p>
+                            <p class="card-text"><small class="text-muted">Average:<i class="fa fa-star"
+                                        aria-hidden="true">{{vote_average}}</i>
+                                </small></p>
+                            <button type="button" class="btn btn-info">Bay</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endfor %}
+
+{% endblock %}
