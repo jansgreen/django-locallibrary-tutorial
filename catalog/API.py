@@ -11,16 +11,15 @@ class Url_api:
         self.url = url
 
 
-
     def discover(self):
+        num = 0
         api_url = 'https://api.themoviedb.org'
         api_key = "api_key=fcbf9f302d5fcc8a3d775556c623b770"
-        Theater = requests.get(str(api_url)+str(self.url)+str(api_key)).text
+        Theater = requests.get(str(api_url)+str(self.url)+str(api_key), params={'page':2}).text
         return Theater
-        
 
 
-def get_movies():
+def get_movies(): # this functios make complete the url API
     url = "/3/discover/movie?"
     get_url = Url_api(url)
     Theater = get_url.discover()
@@ -38,10 +37,9 @@ class mk_data():
     
     
     def mk_field(self):
+        theater=[]
         full_data = self.data
-        theater = []
         x = 0
-        print(full_data['page'[2]])
         obj_movie = full_data['results']
         for movie in obj_movie:
             x +=1
@@ -68,10 +66,10 @@ class mk_data():
                 'popularity': popularity,
                 'vote': vote,
                 'video': video,
-                'poster': 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'+poster,
+                'poster': 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'+str(poster),
                 'TheatreId': TheatreId,
                 'adult':  adult,
-                'backdrop': 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'+backdrop,
+                'backdrop': 'https://image.tmdb.org/t/p/w600_and_h900_bestv2'+str(backdrop),
                 'Language': Language,
                 'original_title': original_title,
                 'genreids': genreids,
