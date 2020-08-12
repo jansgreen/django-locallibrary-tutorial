@@ -1,0 +1,64 @@
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row align-items-center">
+        {% for movie in galeries %}
+        {# Each "movie" is a movie model object. #}
+        <form class="form" action="{% url 'push_bag' movie.id %}" method="POST">
+            {% csrf_token %}
+
+            <div class="col-12">
+                <div class="card mb-3" style="max-width: 78%; margin-top: 2%; margin-bottom: 10%;">
+                    <div class="row no-gutters">
+                        <div class="col-md-7">
+                            <img src="{{movie.poster}}" class="card-img" alt="{{movie.title|upper}}">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card-body">
+                                <h5 class="card-title">{{movie.title|upper}}</h5>
+                                <p class="card-text">Overview : {{movie.overview}}</p>
+                                <p class="card-text">Language : {{movie.Language}}</p>
+                                <p class="card-text"><strong class="text-muted">Price : ${{movie.price}}</p></strong>
+
+
+                                <p class="card-text"><small class="text-muted">Date: {{movie.release_date}}</small></p>
+                                <p class="card-text"><small class="text-muted">Vote: {{movie.vote}}</small></p>
+                                <p class="card-text"><small class="text-muted">Clasification:
+                                        {% if movie.adult == False %}All Family {% else %} Adult
+                                        {{movie.adult}}{% endif %}</small></p>
+                                <p class="card-text"><small class="text-muted">Average:<i class="fa fa-star"
+                                            aria-hidden="true">{{vote_average}}</i>
+                                    </small></p>
+                                <div class="row justify-content-between">
+                                    <div class="col-5">
+                                        <input type="number" class="form-control"
+                                            aria-label="Amount (to the nearest dollar)" name="quantity" value="1"
+                                            min="1" max="99" data-movie.id="{{movie.id}}" id="id_qty_{{movie.id}}"
+                                            placeholder="Quantity">
+                                    </div>
+                                    <div class="col-3">
+                                        <input type="submit" class="btn btn-info"
+                                            value="Buy ${{movie.price}}">Buy</input>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

@@ -15,7 +15,7 @@ class Url_api:
         num = 0
         api_url = 'https://api.themoviedb.org'
         api_key = "api_key=fcbf9f302d5fcc8a3d775556c623b770"
-        Theater = requests.get(str(api_url)+str(self.url)+str(api_key), params={'page':2}).text
+        Theater = requests.get(str(api_url)+str(self.url)+str(api_key), params={'page':1}).text
         return Theater
 
 
@@ -57,6 +57,7 @@ class mk_data():
             vote_average = movie['vote_average']
             overview = movie['overview']
             release_date = movie['release_date']
+            price = round((popularity/vote_average)* 2.5, 2)
 
 
             theater.append({
@@ -76,11 +77,12 @@ class mk_data():
                 'title': title,
                 'vote_average':vote_average,
                 'overview': overview,
-                'release_date': release_date
+                'release_date': release_date,
+                'price': price
                 }
             })
             url = str('./catalog/fixtures/')+str(self.Name_data)+str('.json')
             with open(url, 'w') as file:
                 json.dump(theater, file, indent=4)
-            pass
+            
     

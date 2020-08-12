@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'django.contrib.sites',
     'catalog.apps.CatalogConfig',
+    'bag.apps.BagConfig',
 ]
 
 MIDDLEWARE = [

@@ -47,26 +47,14 @@ def index(request):
             
         if not galeries:
             messages.add_message(request, messages.INFO, 'The movie '+search+' you looking far is not found!')
-    paginator = Paginator(galeries, 6)
+            
+    paginator = Paginator(galeries, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         'page_obj': page_obj,
         }
     return render(request, 'index.html', context)
-
-
-def a_movie(request, movie_title):
-    galeries = Movies.objects.all().order_by('title')
-    if movie_title:
-        galeries = Movies.objects.filter(
-        Q(title__icontains = movie_title) | Q(release_date__icontains = movie_title)
-        ).distinct()
-        context = {
-          'galeries' : galeries 
-        }
-        return render(request, 'Amovie.html', context)
-
 
 
 

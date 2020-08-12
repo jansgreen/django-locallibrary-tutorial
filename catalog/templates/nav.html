@@ -6,12 +6,13 @@
   <nav class="navbar navbar-dark bg-primary">
     <div class="row container-fluid">
       <div class="col-md-7">
-        <a class="navbar-brand" href="{% url 'index'%}?next={{request.path}}">
+        <a class="navbar-brand" href="{% url 'index' %}">
           <img src="{% static 'images/Logo_Zerotv.png' %}" width="150" height="60" alt="Home" loading="lazy">
         </a></div>
       <div class="col-3 col-md-5">
         <ul class="sidebar-nav">
-          <li class="nav_bar"><a href=""
+          <li class="nav_bar">
+            <a href="{% url 'bag' %}?next={{request.path}}"
               class="{% if grand_total %} text-info font-weight-bold{% else %} text-black{% endif %} nav-link">
               <img class="icon movie_shoppin" src="{% static 'images/myMovies.png' %}" width="35em" height="35em"
                 alt="">

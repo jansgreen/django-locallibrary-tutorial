@@ -25,11 +25,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
 ]
 
 
 urlpatterns += [
     path('catalog/', include('catalog.urls')),
+    path('bag/', include('bag.urls')),
+
+
 ]
 
 
@@ -43,6 +47,8 @@ urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #Add URL maps to redirect the base URL to our application
 urlpatterns += [
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+    path('bag/', RedirectView.as_view(url='/bag/', permanent=True)),
+
 ]
 
 

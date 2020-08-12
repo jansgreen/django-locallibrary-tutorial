@@ -19,11 +19,13 @@ class Movies(models.Model):
     backdrop =models.URLField(max_length=1024, null=True, blank=True)
     Language =models.CharField(max_length=5, null=True, blank=True)
     original_title =models.CharField(max_length=254, null=True, blank=True)
-    genreids = models.IntegerField(default=0, null=True, blank=True)
+    genreids = models.CharField(max_length=254, null=True, blank=True)
     title =models.CharField(max_length=254, null=True, blank=True)
     vote_average = models.IntegerField(default=0, null=True, blank=True)
     overview = models.TextField(max_length=554, null=True, blank=True)
     release_date =models.DateField(null=True, blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True)
+
 
 
     
