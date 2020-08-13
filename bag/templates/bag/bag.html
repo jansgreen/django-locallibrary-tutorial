@@ -5,86 +5,81 @@
 {% block content %}
 
 <section>
+<div class="container">
+  <div class="index_galery">
+    {% if page_obj %}
+    {# Each "movie" is a movie model object. #}
+    <div class="row justify-content-between">
+      <div class="col-4">
+        {% if page_obj.has_previous %}
+        <div class="carousel slide" data-ride="carousel">
+          <a class="carousel-control-prev" href="?page={{ page_obj.previous_page_number }}" role="button"
+            data-slide="prev">
+            <span class="carousel-control-prev-icon align-baseline" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+      <span class="current">
+        <nav aria-label="...">
+          <ul class="pagination pagination-lg">
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ page_obj.number }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+          </ul>
+        </nav>
+    </span>
+      <div class="col-4">
+        {% if page_obj.has_next %}
+        <div class="carousel slide" data-ride="carousel">
+          <a class="carousel-control-next" href="?page={{ page_obj.next_page_number }}" role="button"
+            data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
 
+          </a>
+        </div>
+        {% endif %} </div>
+    </div>
+  </div>
+  {% endif %}
+  <div>
 
-
+  </div>
   <div class="container">
     <div class="index_galery">
-      {% if page_obj %}
-      {# Each "movie" is a movie model object. #}
-      <div class="row justify-content-between">
-        <div class="col-4">
-          {% if page_obj.has_previous %}
-          <div class="carousel slide" data-ride="carousel">
-            <a class="carousel-control-prev" href="?page={{ page_obj.previous_page_number }}" role="button"
-              data-slide="prev">
-              <span class="carousel-control-prev-icon align-baseline" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </div>
-          {% endif %}
-        </div>
-        <span class="current">
-          <nav aria-label="...">
-            <ul class="pagination pagination-lg">
-              <li class="page-item active" aria-current="page">
-                <span class="page-link">
-                  {{ page_obj.number }}
-                  <span class="sr-only">(current)</span>
-                </span>
-              </li>
-            </ul>
-          </nav>
-      </span>
-        <div class="col-4">
-          {% if page_obj.has_next %}
-          <div class="carousel slide" data-ride="carousel">
-            <a class="carousel-control-next" href="?page={{ page_obj.next_page_number }}" role="button"
-              data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
+      <div class="row justify-content-center">
+        {% for movie in page_obj %}
+        {# Each "movie" is a movie model object. #}
+        <a href="{% url 'id_movie' movie.id %}">
+          <div class="col-md-auto">
+            <div class="card mb-3" style="max-width: 25rem">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{{movie.poster}}" class="card-img-top" alt="{{movie.title}}">
+                </div>
+                <div class="col-md-8">
 
-            </a>
-          </div>
-          {% endif %} </div>
-      </div>
-    </div>
-    {% endif %}
-    <div>
-      {% if  movies_bag %}
-      {{movies_bag}}
-      {% endif %}
-    </div>
-    <div class="container">
-      <div class="index_galery">
-        <div class="row justify-content-center">
-          {% for movie in page_obj %}
-          {# Each "movie" is a movie model object. #}
-          <a href="{% url 'id_movie' movie.id %}">
-            <div class="col-md-auto">
-              <div class="card mb-3" style="max-width: 25rem">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <img src="{{movie.poster}}" class="card-img-top" alt="{{movie.title}}">
-                  </div>
-                  <div class="col-md-8">
+                  <div class="card-body">
+                    <h6 class="card-title">{{movie.title}}</h6>
+                    <p class="card-text"><small class="text-muted">Clasification: {% if movie.adult == False %}All
+                        Family {% else %} Adult {{movie.adult}}{% endif %}</small></p>
 
-                    <div class="card-body">
-                      <h6 class="card-title">{{movie.title}}</h6>
-                      <p class="card-text"><small class="text-muted">Clasification: {% if movie.adult == False %}All
-                          Family {% else %} Adult {{movie.adult}}{% endif %}</small></p>
-
-                      <div class="alert alert-info">{{movie.release_date}}</div>
-                    </div>
+                    <div class="alert alert-info">{{movie.release_date}}</div>
                   </div>
                 </div>
               </div>
             </div>
-          </a>
-          {% endfor %}
-        </div>
+          </div>
+        </a>
+        {% endfor %}
       </div>
     </div>
+  </div>
 </section>
 
 {% endblock %}

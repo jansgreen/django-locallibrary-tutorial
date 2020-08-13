@@ -12,14 +12,11 @@
       <div class="col-3 col-md-5">
         <ul class="sidebar-nav">
           <li class="nav_bar">
-            <a href="{% url 'bag' %}?next={{request.path}}"
-              class="{% if grand_total %} text-info font-weight-bold{% else %} text-black{% endif %} nav-link">
-              <img class="icon movie_shoppin" src="{% static 'images/myMovies.png' %}" width="35em" height="35em"
-                alt="">
-              {% if grand_total %}
-              ${{ grand_total|floatformat:2}}
-              {% else %}
-              $0.00
+            <a href="{% url 'save_movies' %}">
+              {% if Movies_count %}
+              <span class="{% if grand_total %} small badge-pill badge-success{% else %} badge badge-pill badge-secondary{% endif %}"><i class="fa fa-television" aria-hidden="true">              {{ Movies_count }}
+              </i>
+              </span>
               {% endif %}
             </a></li>
 

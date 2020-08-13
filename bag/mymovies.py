@@ -8,6 +8,7 @@ from decimal import Decimal
 
 
 
+
 def my_movies(request):
 
     movies_bag = []
@@ -34,7 +35,7 @@ def my_movies(request):
     
     grand_total = delivery + total
     
-    context = {
+    mycontext = {
         'movies_bag': movies_bag,
         'total': total,
         'Movies_count': Movies_count,
@@ -43,4 +44,4 @@ def my_movies(request):
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,
     }
-    return context
+    return mycontext

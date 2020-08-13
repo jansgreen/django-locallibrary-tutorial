@@ -49,6 +49,7 @@ urlpatterns += [
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
     path('bag/', RedirectView.as_view(url='/bag/', permanent=True)),
 
+
 ]
 
 

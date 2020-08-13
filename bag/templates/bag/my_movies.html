@@ -1,0 +1,14 @@
+
+{% extends "base_generic.html" %}
+
+{% load static %}
+
+{% block content %}
+<section>
+    <ul class="list-group list-group-flush">
+        {% if movies_bag %}
+        <li class="list-group-item">{{movies_bag}}</li>
+        {% endif %}
+      </ul>
+</section>
+{% endblcok %}

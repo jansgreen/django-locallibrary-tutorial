@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block head_title %}{% trans "E-mail Addresses" %}{% endblock %}
+<section>
+    {% if movies_bag %}
+    {{ movies_bag }}
+    {% endif %}
+</section>

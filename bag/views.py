@@ -58,5 +58,12 @@ def a_movie(request, movie_title):
         }
         return render(request, 'bag/Amovie.html', context)
 
+def save_movies(request):
+    
+        return render( request,'bag/my_movies.html' )
+
+
+
+
         
 
