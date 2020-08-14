@@ -5,10 +5,14 @@
 
 {% block content %}
 <section>
+  <div class="container-fluid">
     <ul class="list-group list-group-flush">
         {% if movies_bag %}
-        <li class="list-group-item">{{movies_bag}}</li>
+        {% for bag in movies_bag %}
+        <li class="list-group-item">{{bag.quantity}}</li>
+        {% endfor %}
         {% endif %}
       </ul>
+    </div>
 </section>
-{% endblcok %}
+{% endblock %}

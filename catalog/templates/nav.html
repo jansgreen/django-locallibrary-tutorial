@@ -12,7 +12,7 @@
       <div class="col-3 col-md-5">
         <ul class="sidebar-nav">
           <li class="nav_bar">
-            <a href="{% url 'save_movies' %}">
+            <a href="{% if user.is_authenticated %}{% url 'save_movies' %} {% else %}{% url 'bag' %} {% endif %}">
               {% if Movies_count %}
               <span class="{% if grand_total %} small badge-pill badge-success{% else %} badge badge-pill badge-secondary{% endif %}"><i class="fa fa-television" aria-hidden="true">              {{ Movies_count }}
               </i>

@@ -60,7 +60,7 @@ def a_movie(request, movie_title):
 
 def save_movies(request):
     
-        return render( request,'bag/my_movies.html' )
+        return render( request,"bag/save_movies.html" )
 
 
 
