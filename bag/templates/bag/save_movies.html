@@ -1,4 +1,3 @@
-
 {% extends "base_generic.html" %}
 
 {% load static %}
@@ -7,12 +6,52 @@
 <section>
   <div class="container-fluid">
     <ul class="list-group list-group-flush">
-        {% if movies_bag %}
-        {% for bag in movies_bag %}
-        <li class="list-group-item">{{bag.quantity}}</li>
-        {% endfor %}
-        {% endif %}
-      </ul>
-    </div>
+
+     {% for movie in movies_bag %}
+      <li class="list-group-item">
+        <div class="col-md-auto">
+          <div class="card mb-3" style="max-width: 35rem">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="{{movie.Movies_cont.poster}}" class="card-img-top" alt="{{movie.title}}">
+              </div>
+              <div class="col-md-8">
+
+                <div class="card-body">
+                  <h6 class="card-title">{{movie.Movies_cont.title}}</h6>
+                  <p class="card-text"><small class="text-muted">Clasification: {% if movie.Movies_cont.adult == False %}All
+                      Family {% else %} Adult {{movie.adult}}{% endif %}</small></p>
+                      <p>{{movie.Movies_cont.price}}</p>
+
+                      <form action="{% url 'delete' movie.Movies_cont.id %}" method="POST">
+                        {% csrf_token %}
+                        <p>Quantity:</p>
+
+                        <input type="number" class="form-control"
+                        aria-label="Amount (to the nearest dollar)" name="quantity" value="{{movie.quantity}}"
+                        min="0" max="99" data-movie.id="{{movie.quantity}}" id="id_qty_{{movie.quantity}}">
+
+                        <div class="col-3">
+                          <input type="submit" class="btn btn-danger"
+                              value="Delete">Delete</input>
+                              <input type="hidden" name="redirect_url"
+                              value="{{ request.path}}">
+                              
+                      </div>
+                      </form>
+
+
+                  <div class="alert alert-info">{{movie.Movies_cont.total}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+      {% endfor %}
+
+    </ul>
+  </div>
 </section>
 {% endblock %}

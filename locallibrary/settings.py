@@ -65,7 +65,7 @@ ROOT_URLCONF = 'locallibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates/allauth',],
+        'DIRS': ['./templates/allauth', './bag/templates/bag'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

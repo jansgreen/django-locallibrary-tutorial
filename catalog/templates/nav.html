@@ -12,7 +12,7 @@
       <div class="col-3 col-md-5">
         <ul class="sidebar-nav">
           <li class="nav_bar">
-            <a href="{% if user.is_authenticated %}{% url 'save_movies' %} {% else %}{% url 'bag' %} {% endif %}">
+            <a href="{% if user.is_authenticated %}{% url 'bag' %} {% else %}{% url 'account_login' %} {% endif %}">
               {% if Movies_count %}
               <span class="{% if grand_total %} small badge-pill badge-success{% else %} badge badge-pill badge-secondary{% endif %}"><i class="fa fa-television" aria-hidden="true">              {{ Movies_count }}
               </i>
@@ -50,14 +50,14 @@
       <div class="potition-static">
         <div class="collapse" id="navbarToggleExternalContent">
           <div class="bg-dark p-4">
-            <a href="#"><h5 class="text-white h4">My Movies</h5></a>
+            <a href="{% url 'save_movies' %}"><h5 class="text-white h5">My Movies</h5></a>
             
           </div>
           <div class="bg-dark p-4">
-            <h5 class="text-white h4"><a href="{% url 'account_email' %}"> Account</a></h5>
+            <a href="{% url 'account_email' %}"><h5 class="text-white h5">Account</h5> </a>
           </div>
           <div class="bg-dark p-4">
-            <a href="{% url 'account_logout' %}?next={{request.path}}">Logout</a>
+            <a href="{% url 'account_logout' %}?next={{request.path}}"><h5 class="text-white h5">Logout</h5></a>
           </div>
         </div>
       </div>
