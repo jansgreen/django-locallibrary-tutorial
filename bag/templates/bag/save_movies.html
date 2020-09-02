@@ -3,55 +3,68 @@
 {% load static %}
 
 {% block content %}
-<section>
-  <div class="container-fluid">
-    <ul class="list-group list-group-flush">
+<div class="container-flued">
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="list-group list-group-flush">
+        {% if movies_bag %}
+        {% for movie in movies_bag %}
+        <li class="list-group-item">
+          <div class="col-md-auto">
+            <div class="card mb-3" style="max-width: 35rem">
+              <div class="row no-gutters">
+                <div class="col-md-4">
+                  <img src="{{movie.Movies_cont.poster}}" class="card-img-top" alt="{{movie.title}}">
+                </div>
+                <div class="col-md-8">
 
-     {% for movie in movies_bag %}
-      <li class="list-group-item">
-        <div class="col-md-auto">
-          <div class="card mb-3" style="max-width: 35rem">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src="{{movie.Movies_cont.poster}}" class="card-img-top" alt="{{movie.title}}">
-              </div>
-              <div class="col-md-8">
+                  <div class="card-body">
+                    <h6 class="card-title">{{movie.Movies_cont.title}}</h6>
+                    <p class="card-text"><small class="text-muted">Clasification:
+                        {% if movie.Movies_cont.adult == False %}All
+                        Family {% else %} Adult {{movie.adult}}{% endif %}</small></p>
+                    <p>Price: {{movie.Movies_cont.price}}</p>
 
-                <div class="card-body">
-                  <h6 class="card-title">{{movie.Movies_cont.title}}</h6>
-                  <p class="card-text"><small class="text-muted">Clasification: {% if movie.Movies_cont.adult == False %}All
-                      Family {% else %} Adult {{movie.adult}}{% endif %}</small></p>
-                      <p>{{movie.Movies_cont.price}}</p>
+                    <form action="{% url 'updata' movie.Movies_cont.id %}" method="POST">
+                      {% csrf_token %}
+                      <p>Quantity:</p>
 
-                      <form action="{% url 'delete' movie.Movies_cont.id %}" method="POST">
-                        {% csrf_token %}
-                        <p>Quantity:</p>
+                      <div class="input-group">
+                        <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
+                          name="quantity" value="{{movie.quantity}}" min="0" max="99" data-movie.id="{{movie.quantity}}"
+                          id="id_qty_{{movie.quantity}}">
 
-                        <input type="number" class="form-control"
-                        aria-label="Amount (to the nearest dollar)" name="quantity" value="{{movie.quantity}}"
-                        min="0" max="99" data-movie.id="{{movie.quantity}}" id="id_qty_{{movie.quantity}}">
-
-                        <div class="col-3">
-                          <input type="submit" class="btn btn-danger"
-                              value="Delete">Delete</input>
-                              <input type="hidden" name="redirect_url"
-                              value="{{ request.path}}">
-                              
+                        <div class="input-group-append">
+                          <input type="submit" class="btn btn-info" value="Updata">Updata</input>
+                          <input type="hidden" name="redirect_url" value="{{ request.path}}">
+                        </div>
                       </div>
-                      </form>
+
+                    </form>
 
 
-                  <div class="alert alert-info">{{movie.Movies_cont.total}}</div>
+                    <div class="alert alert-info">Subtotal: ${{movie.total}}</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+        {% endfor %}
 
-      {% endfor %}
+        {% else %}
+        <h4>You not have items</h4>
+        {% endif %}
 
-    </ul>
+      </ul>
+    </div>
+
+    <div class="col-md-4 bg-dark">
+      <ul class="nav flex-column">
+        <li class="nav-item">dsfksdjfk</li>
+      </ul>
+    </div>
   </div>
-</section>
+</div>
+
 {% endblock %}

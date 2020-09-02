@@ -23,6 +23,7 @@ def my_movies(request):
         movies_bag.append({
             'Movies_id': Movies_id,
             'quantity': quantity,
+            'total' : total,
             'Movies_cont': Movies_cont,
         })
     if total < settings.FREE_DELIVERY_THRESHOLD:
@@ -43,4 +44,5 @@ def my_movies(request):
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,
     }
+    
     return mycontext

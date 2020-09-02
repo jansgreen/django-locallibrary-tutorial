@@ -17,7 +17,9 @@
   {% block extra_css %}
 
   <link rel="stylesheet" href="/static/css/styles.css">
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
   {% endblock %}
 
   <title>ZeroTV</title>
@@ -36,13 +38,26 @@
   {% endblock %}
 
   {% if messages %}
-  <div class="container not_found">
-    <div class="messages">
-      {% for message in messages %}
-      <div{% if message.tags %} class="alert alert-secondary" {% endif %}>{{message}}</div>
+  <div class="message-container">
+    {% for message in messages %}
+    {% with message.tags as tags %}
+
+      {% if  tags == 'error' %}
+        {% include 'includes/toasts/message_Error.html' %}
+
+      {% elif tags == 'info' %}
+        {% include 'includes/toasts/message_info.html' %}
+
+      {% elif tags == 'success' %}
+        {% include 'includes/toasts/message_Success.html' %}
+
+      {% elif tags == 'warning' %}
+        {% include 'includes/toasts/message_Warning.html' %}
+
+      {% endif %}
+    {% endwith %}
     {% endfor %}
-  </div>
-  </div>
+    </div>
   {% endif %}
 
   {% block page_header %}
@@ -52,6 +67,10 @@
   {% endblock %}
 
   {% block postloadjs %}
+  <script type="text/javascript">
+    $('.toast').toast('show');
+  </script>
+
   {% endblock %}
 
   {% block footer %}
@@ -76,9 +95,10 @@
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   {% block corejs %}
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script> -->
+
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>

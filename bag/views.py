@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from catalog.models import Movies
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 from . import mymovies
 
 
@@ -61,29 +62,23 @@ def a_movie(request, movie_title):
         return render(request, 'bag/Amovie.html', context)
 
 def save_movies(request):
-    return render(request,"bag/save_movies.html")
+    return render(request,'bag/save_movies.html')
 
 
-def delete(request, Movies_id):
+def updata(request, Movies_id):
     """A view show a user bag, all code come from code intitute, but they have some slight changes"""
-    movies_bag = []
-    Movies_count = 0
-
+    Message_Movies = Movies.objects.get(pk=Movies_id)
     quantity = int(request.POST.get('quantity'))
-    redirect_url = request.POST.get('redirect_url')
-    bag = request.session['bag']
-    if {Movies_id:quantity} == 0:
-        item = request.session.pop('bag', 'Movies_id')
-        request.session.modified = True
+    bag = request.session.get('bag',{})
+    a = get_object_or_404(Movies, pk=Movies_id)
+    Movies_str_id = str(Movies_id)
+    if quantity == 0:
+        if Movies_str_id in bag:
+            del bag[Movies_str_id]
+            messages.error(request, f'The movie has been removed from your bag')
+    elif quantity > 0:
+        bag[Movies_str_id] = quantity
+        messages.success(request, f'The quantity has been updata in your bag')
+    request.session['bag'] = bag
+    return redirect(reverse('save_movies'))
 
-    print(bag)
-    Movies_cont = get_object_or_404(Movies, pk=Movies_id)
-    movies_bag.append({
-        'Movies_id': Movies_id,
-        'quantity': quantity,
-        'Movies_cont': Movies_cont,
-    })
-
-   
-    return redirect(redirect_url)
-    #return render(request, 'bag/save_movies.html')
