@@ -1,8 +1,8 @@
 # ZeroTv Store
 
-[![Open in Heroku](https://gitpod.io/button/open-in-gitpod.svg)](https://django-locallibrary-tutorial.herokuapp.com/catalog/)
+[![Open in Heroku]](https://django-locallibrary-tutorial.herokuapp.com/catalog/)
 
-Tutorial "Local Library" website written in Django.
+Store online "ZeroTv" website written in Django.
 
 For detailed information about this project see the associated [MDN tutorial home page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website).
 

@@ -71,7 +71,7 @@ class mk_data():
 
                 if "release_date" in movie:
                     release_date = movie['release_date']
-                else:
+                elif len("release_date") in movie == empty | "release_date" not in movie:
                     release_date = "2020-01-01"
                     pass
                 if int(popularity) > 0 | int(vote_average) > 0 :

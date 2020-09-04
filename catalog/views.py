@@ -33,7 +33,7 @@ from .models import Author
 
 def index(request):
     """ A view to show all products, including sorting and search queries """ 
-    #api = API.get_movies()
+    api = API.get_movies()
 
    
     
