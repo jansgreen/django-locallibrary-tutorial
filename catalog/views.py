@@ -35,8 +35,7 @@ def index(request):
     """ A view to show all products, including sorting and search queries """ 
     #api = API.get_movies()
 
-
-    
+   
     
     search = request.GET.get("Search")
     galeries = Movies.objects.all().order_by('title')
@@ -46,7 +45,7 @@ def index(request):
             ).distinct()
             
         if not galeries:
-            messages.warning(request, f'The movie '+search+' you looking far is not found!')
+            messages.warning(request, f'The movie {search} you looking far is not found!')
             
     paginator = Paginator(galeries, 4)
     page_number = request.GET.get('page')
@@ -55,6 +54,7 @@ def index(request):
         'page_obj': page_obj,
         }
     return render(request, 'index.html', context)
+
 
 
 

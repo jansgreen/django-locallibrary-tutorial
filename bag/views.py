@@ -62,6 +62,10 @@ def a_movie(request, movie_title):
         return render(request, 'bag/Amovie.html', context)
 
 def save_movies(request):
+    bag = request.session.get('bag',{})
+    if not bag:
+        messages.warning(request, f'You not have movies in your bag')
+        return redirect('bag')
     return render(request,'bag/save_movies.html')
 
 

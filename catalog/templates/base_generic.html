@@ -40,19 +40,20 @@
   {% if messages %}
   <div class="message-container">
     {% for message in messages %}
-    {% with message.tags as tags %}
+    {% with message.level as tags %}
 
-      {% if  tags == 'error' %}
+      {% if  tags == 40 %} <!--IT IS FOR ERROR MESSAGE -->
         {% include 'includes/toasts/message_Error.html' %}
 
-      {% elif tags == 'info' %}
+      {% elif tags == 20 %} <!--IT IS FOR INFO MESSAGE -->
         {% include 'includes/toasts/message_info.html' %}
 
-      {% elif tags == 'success' %}
+      {% elif tags == 25 %} <!--IT IS FOR SUCCESS MESSAGE -->
         {% include 'includes/toasts/message_Success.html' %}
 
-      {% elif tags == 'warning' %}
+      {% elif tags == 30 %} <!--IT IS FOR WARNING MESSAGE -->
         {% include 'includes/toasts/message_Warning.html' %}
+      {% else %} <!--IT IS FOR OTHER MESSAGE -->
 
       {% endif %}
     {% endwith %}
