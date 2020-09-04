@@ -1,6 +1,6 @@
-# Django Local Library
+# ZeroTv Store
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/gitpod-io/django-locallibrary-tutorial)
+[![Open in Heroku](https://gitpod.io/button/open-in-gitpod.svg)](https://django-locallibrary-tutorial.herokuapp.com/catalog/)
 
 Tutorial "Local Library" website written in Django.
 
