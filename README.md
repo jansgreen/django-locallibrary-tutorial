@@ -4,11 +4,11 @@
 
 Store online "ZeroTv" website written in Django.
 
-For detailed information about this project see the associated [MDN tutorial home page](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Tutorial_local_library_website).
+we are using the API from themoviedb [themoviedb](https://api.themoviedb.org/).
 
 ## Overview
 
-This web application creates an online catalog for a small local library, where users can browse available books and manage their accounts.
+This web project is complemented by several applications that are structured as an online store;.
 
 The main features that have currently been implemented are:
 

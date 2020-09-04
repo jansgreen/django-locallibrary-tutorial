@@ -13,7 +13,7 @@ from . import mymovies
 def view_bag(request):
     """A view show a user bag, all code come from code intitute, but they have some slight changes"""
     galeries = Movies.objects.all().order_by('title')
-    paginator = Paginator(galeries, 6)
+    paginator = Paginator(galeries, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {

@@ -33,7 +33,7 @@ from .models import Author
 
 def index(request):
     """ A view to show all products, including sorting and search queries """ 
-    api = API.get_movies()
+    #api = API.get_movies()
 
    
     
@@ -47,7 +47,7 @@ def index(request):
         if not galeries:
             messages.warning(request, f'The movie {search} you looking far is not found!')
             
-    paginator = Paginator(galeries, 4)
+    paginator = Paginator(galeries, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
