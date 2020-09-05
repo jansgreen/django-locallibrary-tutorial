@@ -2,7 +2,7 @@ html {
   width: 99.2%;
   height: 100%;
 }
-body {
+.body_out {
   background: url("/static/images/mkInit.jpg") no-repeat center center fixed;
   background-size: cover;
   height: calc(100vh -164px);
@@ -43,6 +43,8 @@ a:active {
   color: aliceblue;
 }
 
+
+
 .index_galery {
   margin-top: 5%;
   margin-left: 5%;
@@ -62,7 +64,7 @@ a:active {
 }
 
 footer {
-  background-color: #000000;
+  background-color: #3a7ba0;
   max-height: 100px;
   min-height: 90px;
 }
@@ -162,6 +164,23 @@ label {
 
 .a_movie{
   max-width: 80%;
+
+}
+
+.body{
+  background-color: #000000;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+
+
+}
+
+.vertical_rigth_nav{
+  min-height: 800px;
+}
+
+.cart_list{
+  background-color: #f4f4f4f4;
+  min-height: 800px;
 
 }
 

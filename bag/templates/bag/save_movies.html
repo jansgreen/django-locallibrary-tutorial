@@ -5,7 +5,7 @@
 {% block content %}
 <div class="container-flued">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9 cart_list">
       <ul class="list-group list-group-flush">
         {% if movies_bag %}
         {% for movie in movies_bag %}
@@ -35,7 +35,7 @@
                           id="id_qty_{{movie.quantity}}">
 
                         <div class="input-group-append">
-                          <input type="submit" class="btn btn-info" value="Updata">Updata</input>
+                          <input type="submit" class="btn btn-info" value="Updata"></input>
                           <input type="hidden" name="redirect_url" value="{{ request.path}}">
                         </div>
                       </div>
@@ -56,13 +56,11 @@
 
       </ul>
     </div>
-
-    <div class="col-md-4 bg-dark">
+    <div class="col-md-3 vertical_rigth_nav bg-dark">
       <ul class="nav flex-column">
         <li class="nav-item">dsfksdjfk</li>
       </ul>
     </div>
   </div>
-</div>
-
+  </div>
 {% endblock %}
