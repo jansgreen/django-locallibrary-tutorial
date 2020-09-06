@@ -42,7 +42,6 @@
 
                     </form>
 
-
                     <div class="alert alert-info">Subtotal: ${{movie.total}}</div>
                   </div>
                 </div>
@@ -58,9 +57,10 @@
     </div>
     <div class="col-md-3 vertical_rigth_nav bg-dark">
       <ul class="nav flex-column">
-        <li class="nav-item">dsfksdjfk</li>
+
+        <a href="{% url 'checkout' %}" class="btn btn-primary">checkout</a>
       </ul>
     </div>
   </div>
-  </div>
+</div>
 {% endblock %}

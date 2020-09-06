@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'catalog.apps.CatalogConfig',
     'bag.apps.BagConfig',
+    'checkout',
+
+    #other
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -62,10 +66,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'locallibrary.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates/allauth', './bag/templates/bag'],
+        'DIRS': ['./templates/allauth', './bag/templates/bag', './checkout/templates/checkout'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,6 +81,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'bag.mymovies.my_movies',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
