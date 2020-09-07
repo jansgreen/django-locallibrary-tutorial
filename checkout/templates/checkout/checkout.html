@@ -1,37 +1,80 @@
 {% extends "base_generic.html" %}
 
 {% load static %}
-{% load crispy_forms_tags %}                                                                                                                           
+{% load crispy_forms_tags %}
 
 
 {% block content %}
+<div class="row no-gutters">
+    <div class="col-md-8">
+        <div class="container">
+            <div class="index_galery">
+                <div class="row justify-content-between">
+                    <div class="col-12">
+                        <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                            {% csrf_token %}
+                            <fieldset class="rounded px-3 mb-5">
+                                <legend class="fieldset-lebel small text-black px2 w-auto"><h2 class="checkout_tag">Details</h2> </legend>
+                                <div class="row">
+                                <div class="col-6">
+                                    <p class="checkout_tag">Full Name: </p> {{ order_form.full_name | as_crispy_field }}
+                                    <p class="checkout_tag">Email: </p>{{ order_form.email | as_crispy_field }}
+                                    <p class="checkout_tag">Phone Number</p>
+                                    {{ order_form.phone_number | as_crispy_field }}
+                                    <p class="checkout_tag">Country</p>{{ order_form.country | as_crispy_field }}
+                                </div>
+                                <div class="col-6">
+                                    <p class="checkout_tag">County</p>{{ order_form.county | as_crispy_field }}
+                                    <p class="checkout_tag">Postcode</p>{{ order_form.postcode | as_crispy_field }}
+                                    <p class="checkout_tag">Town or City</p>
+                                    {{ order_form.town_or_city | as_crispy_field }}
+                                    <p class="checkout_tag">Adress 1</p>
+                                    {{ order_form.street_address1 | as_crispy_field }}
+                                    <p class="checkout_tag">Address 2</p>
+                                    {{ order_form.street_address2 | as_crispy_field }}
+                                </div>
+                            </div>
 
-<section>
-    <div class="container">
-        <div class="index_galery">
-            <div class="row justify-content-between">
-                <div class="col-4">
-                    <form action="{% url 'checkout' %}" method="POST" id="payment-form">
-                        {% csrf_token %}
-                        <fieldset class="rounded px-3 mb-5">
-                            <legend class="fieldset-lebel small text-black px2 w-auto">Details</legend>
-                            {{ order_form.full_name | as_crispy_field }}
-                            {{ order_form.email | as_crispy_field }}
-                            {{ order_form.phone_number | as_crispy_field }}
-                            {{ order_form.country | as_crispy_field }}
-                            {{ order_form.postcode | as_crispy_field }}
-                            {{ order_form.town_or_city | as_crispy_field }}
-                            {{ order_form.street_address1 | as_crispy_field }}
-                            {{ order_form.street_address2 | as_crispy_field }}
-                            {{ order_form.county | as_crispy_field }}
-
-
-                        </fieldset>
-                    </form>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+    <div class="col-md-4">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<section>
 
-{% endblock %}
+
+    {% endblock %}

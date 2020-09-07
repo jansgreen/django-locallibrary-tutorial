@@ -183,5 +183,21 @@ label {
   min-height: 800px;
 
 }
+/*CHECKOUT FIELD*/
 
+
+.rounded{
+  min-width: auto;
+
+}
+
+.span_field{
+  background-color: #1e0394f4;
+  color: #ffffff;
+  
+}
+
+.checkout_tag{
+  color: #ffffff;
+}
 
