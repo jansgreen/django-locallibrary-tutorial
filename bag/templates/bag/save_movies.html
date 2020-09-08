@@ -1,5 +1,6 @@
 {% extends "base_generic.html" %}
-
+{% load humanize %}
+{% load bag_tools %}
 {% load static %}
 
 {% block content %}
@@ -42,7 +43,7 @@
 
                     </form>
 
-                    <div class="alert alert-info">Subtotal: ${{movie.total}}</div>
+                    <div class="alert alert-info">Subtotal: ${{movie.Movies_cont.price | calc_subtotal:movie.quantity | intcomma }}</div>
                   </div>
                 </div>
               </div>
@@ -57,8 +58,30 @@
     </div>
     <div class="col-md-3 vertical_rigth_nav bg-dark">
       <ul class="nav flex-column">
-<div>{{order_total}}</div>
-        <a href="{% url 'checkout' %}" class="btn btn-primary">checkout</a>
+        <div>
+          <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for movie in movies_bag %}
+
+                <tr>
+                    <td>{{movie.Movies_cont.title}}</td>
+                    <td>{{movie.quantity}}</td>
+                    <td>$ {{movie.Movies_cont.price}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+          <p class="checkout_tag">Total: S {{total |intcomma}}</p></div>
+        <a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
       </ul>
     </div>
   </div>
