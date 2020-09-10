@@ -201,3 +201,9 @@ label {
   color: #ffffff;
 }
 
+/*=========stripe*/
+
+.stripe-style-input{
+  background-color: #ffffff;
+  color: #000000;
+}

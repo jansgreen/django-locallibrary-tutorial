@@ -185,6 +185,11 @@ STATIC_URL = '/static/'
 # Static file serving.
 # http://whitenoise.evans.io/en/stable/django.html#django-middleware
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+# STRIPE
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
+STRIPE_CURRENT = 'usd'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
+
+
