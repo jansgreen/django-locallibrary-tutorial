@@ -14,15 +14,15 @@ class order(models.Model):
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     country = models.CharField(max_length=40, null=False, blank=False)
-    postcode =models.CharField(max_length=20, null=True, blank=True)
+    postcade = models.IntegerField()
     town_or_city =models.CharField(max_length=40, null=False, blank=False)
     street_address1 =models.CharField(max_length=80, null=False, blank=False)
     street_address2 =models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=False)
     date =models.DateTimeField(auto_now_add=True)
-    delivery_cost = models.DecimalField(max_digits=6, decimal_places = 2, null = False, blank=False)
-    order_total = models.DecimalField(max_digits=6, decimal_places = 2, null = False, blank=False)
-    grand_total = models.DecimalField(max_digits=6, decimal_places = 2, null = False, blank=False)
+    order_total = models.IntegerField()
+    grand_total = models.IntegerField()
+    delivery_cost = models.IntegerField(null=True)
 
 
     def _generate_order_number(self):
@@ -53,8 +53,8 @@ class order(models.Model):
 class OrderLineItem(models.Model):
     order = models.ForeignKey(order, null=False, blank=False, on_delete= models.CASCADE, related_name='lineitems')
     Movie = models.ForeignKey(Movies, null=False, blank=False, on_delete= models.CASCADE)
-    quantity = models.IntegerField(null = False, blank=False, default=0)
-    lineitem_total = models.DateField(null = False, blank=False)
+    quantity = models.IntegerField()
+    lineitem_total = models.DateField(null=False, blank=False)
 
     def save(self, *args, **kwargs):
         """ override the original  save method to set the order number if it has not set already"""

@@ -29,15 +29,15 @@ card.addEventListener("change", function (event) {
     errorDiv.textContent = "";
   }
 });
-/* form suminit*/
+/* form submit*/
 
-var form = document.getElementById("payment-form");
+var form = document.querySelector("payment-form");
 console.log(form + " Entrando a profudidades");
 
 form.addEventListener('submit', function(ev) {
   ev.preventDefault();
   card.update({ disabled: true });
-  $('submit-button').attr('disabled', true);
+  $('#button-submit').attr('disabled', true);
   stripe.confirmCardPayment(intent, {
       payment_method: {
         card: card,
@@ -51,7 +51,8 @@ form.addEventListener('submit', function(ev) {
         $("#submit-button").attr("disabled", true);
       } else {
         if (result.paymentIntent.status === "succeeded") {
-          form.submit;
+          console.log(form);
+          form.submit();
           // Complete payment when the submit button is clicked
 
         }
