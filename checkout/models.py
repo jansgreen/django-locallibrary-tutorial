@@ -20,9 +20,9 @@ class order(models.Model):
     street_address2 =models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=False)
     date =models.DateTimeField(auto_now_add=True)
-    order_total = models.IntegerField()
-    grand_total = models.IntegerField()
-    delivery_cost = models.IntegerField(null=True)
+    order_total = models.IntegerField(null=True, default = False)
+    grand_total = models.IntegerField(null=True, default = False)
+    delivery_cost = models.IntegerField(null=True, default = False)
 
 
     def _generate_order_number(self):

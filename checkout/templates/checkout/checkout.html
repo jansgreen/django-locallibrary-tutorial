@@ -17,7 +17,7 @@
             <div class="index_galery">
                 <div class="row justify-content-between">
                     <div class="col-12">
-                        <form action="{% url 'checkoutOrder' %}" method="POST" id="payment-form">
+                        <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                             {% csrf_token %}
                             <fieldset class="rounded px-3 mb-5">
                                 <legend class="fieldset-lebel small text-black px2 w-auto">
@@ -98,8 +98,8 @@
             </tbody>
         </table>
 
-        <div id="delivery"><p class="checkout_tag" >Delivery: S {{ delivery_cost| crispy }}</p></div>
-        <div id="total_cost"><p class="checkout_tag">Total: S {{total |intcomma }}</p></div>
+        <div id="delivery"><p class="checkout_tag" >Delivery: $ {{ delivery |intcomma }}</p></div>
+        <div id="total_cost"><p class="checkout_tag">Total: $ {{total |intcomma }}</p></div>
 
         <div class="row">
             <!-- Display a payment form -->
