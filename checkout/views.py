@@ -1,6 +1,5 @@
 
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.http import HttpRequest
 from django.contrib import messages
 from django.conf import settings
 
@@ -17,9 +16,14 @@ import stripe
 def checkout(request):
     stripe_public_key = 'pk_test_0p4jqeiFYPzrkeRsn0iQdaSO00VNNlhS7K'#settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = 'sk_test_RTba6nZ1WHPp4rAX65VasJL600Uc7R8pg2'#settings.STRIPE_SECRET_KEY
-    print(my_movies)
     if request.method == 'POST':
         bag = request.session.get('bag', {})
+        #for details in my_movies(request):
+        #    print(int(details['total']))
+        #    print(int(details['delivery']))
+        #    print(int(details['grand_total']))
+
+         #   pass
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -30,31 +34,31 @@ def checkout(request):
             'town_or_city': request.POST['town_or_city'],
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
-
         }
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()
-            print(order)
-            print("profundidad 1")
+            print("profundidad 2")
+
+            print(bag.items())
             for Movies_id, quantity in bag.items():
-                print(Movies_id)
-                print("profundidad 2")
+                print("profundidad 3")
+                print(Movies_id, quantity)
                 try:
                     movie = Movies.objects.get(id= Movies_id)
+                    print("profundidad 4")
                     print(movie)
-                    print("profundidad 3")
                     if isinstance(quantity, int):
-                        Order_Line = OrderLineItem(
-                            order=order,
-                            Movie= movie,
-                            quantity=quantity,
-                        )
-                        print("profundidad 4")
-                        print(Order_Line)
-                        line = OrderForm(Order_Line)
-                        line.save()
+                        Order_Line = { 
+                            'order':order,
+                            'Movie': movie,
+                            'quantity':quantity,
+                        }
+                        print("profundidad 5")
+                        Order_Line_Item = OrderLineItem(Order_Line)
+                        Order_Line_Item.save()
+                        print(Order_Line_Item)
                 except Movies.DoesNotExist:
                     messages.error(request, " The movie not exist, the order will be cancel")
                     order.delete()

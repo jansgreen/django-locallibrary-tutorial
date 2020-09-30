@@ -10,7 +10,7 @@ from catalog.models import Movies
 # Create your models here.
 class order(models.Model):
     order_number = models.CharField(max_length=20, null=True, editable=False)
-    full_name = models.CharField(max_length=50, null=False, blank=False)
+    full_name = models.CharField(max_length=50, null=False )
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     country = models.CharField(max_length=40, null=False, blank=False)
@@ -45,21 +45,20 @@ class order(models.Model):
         """ override the original  save method to set the order number if it hasn't set already"""
         if not self.order_number:
             self.order_number = self._generate_order_number()
-        super().save(*args, **kwargs)
+        super(order, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.order_number
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(order, null=False, blank=False, on_delete= models.CASCADE, related_name='lineitems')
-    Movie = models.ForeignKey(Movies, null=False, blank=False, on_delete= models.CASCADE)
+    order = models.ForeignKey(order, null=False, on_delete= models.CASCADE, related_name='lineitems')
+    Movie = models.ForeignKey(Movies, null=False, on_delete= models.CASCADE)
     quantity = models.IntegerField()
-    lineitem_total = models.DateField(null=False, blank=False)
+    lineitem_total = models.DateField(null=False)
 
     def save(self, *args, **kwargs):
         """ override the original  save method to set the order number if it has not set already"""
         self.lineitem_total = self.Movie.price * self.quantity
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return f'SKU {self.Movie.id}'

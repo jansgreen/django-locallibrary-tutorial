@@ -98,7 +98,7 @@
             </tbody>
         </table>
 
-        <div id="delivery"><p class="checkout_tag" >Delivery: $ {{ delivery |intcomma }}</p></div>
+        <div id="delivery" class="checkout_tag" >Delivery: $ {{ free_delivery_delta |intcomma }} {{ free_delivery_threshold |intcomma }} grand_total:{{ grand_total |intcomma }} </p> </div>
         <div id="total_cost"><p class="checkout_tag">Total: $ {{total |intcomma }}</p></div>
 
         <div class="row">
