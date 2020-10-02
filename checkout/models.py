@@ -7,6 +7,7 @@ from django.conf import settings
 from catalog.models import Movies
 
 
+
 # Create your models here.
 class order(models.Model):
     order_number = models.CharField(max_length=20, null=True, editable=False)
@@ -33,7 +34,7 @@ class order(models.Model):
     def update_total(self):
         """ update grand total each time a line item is added"""
 
-        self.order_total = self.lineitem_total.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+        self.order_total = self.lineitem_total.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
@@ -51,14 +52,26 @@ class order(models.Model):
         return self.order_number
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(order, null=False, on_delete= models.CASCADE, related_name='lineitems')
-    Movie = models.ForeignKey(Movies, null=False, on_delete= models.CASCADE)
+    order = models.ForeignKey(order, on_delete= models.CASCADE, null=True)
+    Movie = models.ForeignKey(Movies, on_delete= models.CASCADE, null=True)
     quantity = models.IntegerField()
-    lineitem_total = models.DateField(null=False)
+    lineitem_total = models.IntegerField(null=True)
 
-    def save(self, *args, **kwargs):
+
+    #order = models.ForeignKey(order, null=True, blank=True, on_delete= models.CASCADE, related_name='lineitems') #null=True, blank=True, help_text="Latest data", db_index=True, on_delete=models.SET_NULL
+    #Movie = models.ForeignKey(Movies, null=True, blank=True, on_delete= models.CASCADE)
+    #quantity = models.IntegerField()
+    #lineitem_total = models.DateField(null=False, blank=False)
+
+
+    def save(self, *args, **kwargs,):
         """ override the original  save method to set the order number if it has not set already"""
+
         self.lineitem_total = self.Movie.price * self.quantity
+        super().save(*args, **kwargs)
+
+        
+
 
     def __str__(self):
         return f'SKU {self.Movie.id}'

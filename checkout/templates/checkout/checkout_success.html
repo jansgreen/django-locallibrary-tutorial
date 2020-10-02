@@ -10,24 +10,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="row no-gutters">
-    <div class="col-md-8">
-        <div class="container">
-            <div class="index_galery">
-                <div class="row justify-content-between">
-                    <div class="col-12">
-<p>test</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4">
-<p>test</p>
-    </div>
+
+
+<div class="bg-light">
+    <div class="container">
+  <div class="py-5 text-center">
+    <h2>Congratulations!</h2>
+    <p class="lead">Your purchase has been made successfully, your order number is # {{context}}, an email will be sent to your at {{success_order}}.</p>
+  </div>
 </div>
-
-<section>
-
-
+</div>
     {% endblock %}
+
+

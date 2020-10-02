@@ -40,7 +40,6 @@ def checkout(request):
         if order_form.is_valid():
             order = order_form.save()
             print("profundidad 2")
-
             print(bag.items())
             for Movies_id, quantity in bag.items():
                 print("profundidad 3")
@@ -50,15 +49,16 @@ def checkout(request):
                     print("profundidad 4")
                     print(movie)
                     if isinstance(quantity, int):
-                        Order_Line = { 
-                            'order':order,
-                            'Movie': movie,
-                            'quantity':quantity,
-                        }
+                        Order_Line = OrderLineItem(
+                            order =order,
+                            Movie = movie,
+                            quantity = quantity,
+                        )
                         print("profundidad 5")
-                        Order_Line_Item = OrderLineItem(Order_Line)
-                        Order_Line_Item.save()
-                        print(Order_Line_Item)
+                        print(order)
+                        print(movie)
+                        print(quantity)
+                        Order_Line.save()
                 except Movies.DoesNotExist:
                     messages.error(request, " The movie not exist, the order will be cancel")
                     order.delete()
@@ -102,8 +102,8 @@ def checkout(request):
 def checkout_success(request, order_number):
     save_info = request.session.get('save_info',{})
     print(save_info)
-    #success_order = get_object_or_404(Movies, order_number=order_number)
-    #messages.success(request, f'Thanks for your shopping, your number order is {Order.order_number}, we send you a email at {Order.email}')
+    success_order = get_object_or_404(order, order_number=order_number)
+    messages.success(request, f'Thanks for your shopping, your number order is {success_order}, we send you a email at {success_order.email}')
 
     if 'bag' in request.session:
         del request.session['bag']

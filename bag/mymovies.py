@@ -10,7 +10,7 @@ from decimal import Decimal
 
 
 def my_movies(request):
-
+    delivery_fee = 3
     movies_bag = []
     total = 0
     Movies_count = 0
@@ -27,7 +27,7 @@ def my_movies(request):
             'Movies_cont': Movies_cont,
         })
     if total < settings.FREE_DELIVERY_THRESHOLD:
-        delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
+        delivery = delivery_fee + total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         free_delivery_delta = settings.FREE_DELIVERY_THRESHOLD - total
     else:
         delivery = 0

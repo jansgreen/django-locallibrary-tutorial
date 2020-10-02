@@ -1,0 +1,134 @@
+{% extends "base_generic.html" %}
+
+{% load humanize %}
+{% load bag_tools %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/style/stripe.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div class="row no-gutters">
+    <div class="col-md-8">
+        <div class="container">
+            <div class="index_galery">
+                <div class="row justify-content-between">
+                    <div class="col-12">
+                        <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                            {% csrf_token %}
+                            <fieldset class="rounded px-3 mb-5">
+                                <legend class="fieldset-lebel small text-black px2 w-auto">
+                                    <h2 class="checkout_tag">Details</h2>
+                                </legend>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="checkout_tag">Full Name: </p>
+                                        {{ order_form.full_name | as_crispy_field }}
+                                        <p class="checkout_tag">Email: </p>{{ order_form.email | as_crispy_field }}
+                                        <p class="checkout_tag">Phone Number</p>
+                                        {{ order_form.phone_number | as_crispy_field }}
+                                        <p class="checkout_tag">Country</p>{{ order_form.country | as_crispy_field }}
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="checkout_tag">County</p>{{ order_form.county | as_crispy_field }}
+                                        <p class="checkout_tag">Postcade</p>{{ order_form.postcade | as_crispy_field }}
+                                        <p class="checkout_tag">Town or City</p>
+                                        {{ order_form.town_or_city | as_crispy_field }}
+                                        <p class="checkout_tag">Adress 1</p>
+                                        {{ order_form.street_address1 | as_crispy_field }}
+                                        <p class="checkout_tag">Address 2</p>
+                                        {{ order_form.street_address2 | as_crispy_field }}
+                                        {{ order_form.grand_total}}
+
+                                    </div>
+                                </div>
+                                <div>
+
+                                    {% if user.is_authenticated %}
+                                    <label class="form-check-label" for="id-save-info">
+                                        <p class="checkout_tag"> Save this information for future orders</p>
+                                    </label>
+                                    <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info"
+                                        name="save-info" checked>
+                                    {% else %}
+                                    <label class=" form-check-label" for="id-save-info">
+                                        <a class="text-info" href="{% url 'account_signup' %}">
+                                            <p class="checkout_tag">Create Acount</p>
+                                        </a>
+                                        <a class="text-info" href="{% url 'account_login' %}">
+                                            <p class="checkout_tag">Login</p>
+                                        </a>
+
+                                    </label>
+                                    {% endif %}
+
+                                </div>
+                            </fieldset>
+                        <!--</form>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <table class="table table-hover table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Movie</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies_bag %}
+
+                <tr>
+                    <td> <img src="{{movie.Movies_cont.poster}}" class="rounded" alt="{{movie.title}}"
+                            style="width: 2rem;"></td>
+                    <td>{{movie.Movies_cont.title}}</td>
+                    <td>{{movie.quantity}}</td>
+                    <td>$ {{movie.Movies_cont.price}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        <div id="delivery" class="checkout_tag" >Delivery: $ {{ free_delivery_delta |intcomma }} {{ free_delivery_threshold |intcomma }} grand_total:{{ grand_total |intcomma }} </p> </div>
+        <div id="total_cost"><p class="checkout_tag">Total: $ {{total |intcomma }}</p></div>
+
+        <div class="row">
+            <!-- Display a payment form -->
+            <div class="stripe_form" >
+                <div id="card-element">
+                    <!--Stripe.js injects the Card Element-->
+                </div>
+                <button id="button-submit" class="btn btn-primary stripe_button">
+                    <div class="spinner hidden" id="spinner"></div>
+                    <span id="button-text">Pay</span>
+                </button>
+                <p id="card-error" role="alert"></p>
+                <p class=" checkout_tag result-message hidden">
+                    Payment succeeded, see the result in your
+                    <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+                </p>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<section>
+
+
+    {% endblock %}
+    {% block postloadjs %}
+    {{block.super}}
+    {{ stripe_public_key | json_script:"id_stripe_public_key"}}
+    {{ client_secret | json_script:"id_stripe_client_secret"}}
+    {{intent.client_secret | json_script:"id_intent"}}
+    {% endblock %}
