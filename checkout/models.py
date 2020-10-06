@@ -5,6 +5,8 @@ from django.db.models import Sum
 from django.conf import settings
 
 from catalog.models import Movies
+from django.db.models.signals import post_save, post_delete
+
 
 
 
@@ -21,9 +23,10 @@ class order(models.Model):
     street_address2 =models.CharField(max_length=80, null=True, blank=True)
     county = models.CharField(max_length=80, null=True, blank=False)
     date =models.DateTimeField(auto_now_add=True)
-    order_total = models.IntegerField(null=True, default = False)
-    grand_total = models.IntegerField(null=True, default = False)
-    delivery_cost = models.IntegerField(null=True, default = False)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0) 
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    delivery_cost =  models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+
 
 
     def _generate_order_number(self):
@@ -34,7 +37,7 @@ class order(models.Model):
     def update_total(self):
         """ update grand total each time a line item is added"""
 
-        self.order_total = self.lineitem_total.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             self.delivery_cost = self.order_total * settings.STANDARD_DELIVERY_PERCENTAGE / 100
         else:
@@ -46,22 +49,16 @@ class order(models.Model):
         """ override the original  save method to set the order number if it hasn't set already"""
         if not self.order_number:
             self.order_number = self._generate_order_number()
-        super(order, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.order_number
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(order, on_delete= models.CASCADE, null=True)
+    order = models.ForeignKey(order, on_delete= models.CASCADE, null=True, related_name='lineitems')
     Movie = models.ForeignKey(Movies, on_delete= models.CASCADE, null=True)
     quantity = models.IntegerField()
-    lineitem_total = models.IntegerField(null=True)
-
-
-    #order = models.ForeignKey(order, null=True, blank=True, on_delete= models.CASCADE, related_name='lineitems') #null=True, blank=True, help_text="Latest data", db_index=True, on_delete=models.SET_NULL
-    #Movie = models.ForeignKey(Movies, null=True, blank=True, on_delete= models.CASCADE)
-    #quantity = models.IntegerField()
-    #lineitem_total = models.DateField(null=False, blank=False)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False, default=0)
 
 
     def save(self, *args, **kwargs,):
@@ -71,7 +68,5 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
         
-
-
     def __str__(self):
-        return f'SKU {self.Movie.id}'
+        return f'SKU {self.Movie.id} on order number {self.order.order_number}'

@@ -10,16 +10,138 @@
 {% endblock %}
 
 {% block content %}
-
-
 <div class="bg-light">
-    <div class="container">
-  <div class="py-5 text-center">
-    <h2>Congratulations!</h2>
-    <p class="lead">Your purchase has been made successfully, your order number is # {{context}}, an email will be sent to your at {{success_order}}.</p>
+  <div class="container">
+    <div class="py-5 text-center">
+      <h2>Congratulations!</h2>
+      <p class="lead">Your purchase has been made successfully, your order number is # {{success_order}}, an email will
+        be sent to your at {{success_order.email}}.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <div class="bg-light">
+          <div class="container">
+            <div class="py-5 text-center">
+              <h4>Receipts</h4>
+              <div class="row">
+                {% for movie in movies_bag %}
+
+                <tr>
+                    <td> <img src="{{movie.Movies_cont.poster}}" class="rounded" alt="{{movie.title}}"
+                            style="width: 2rem;"></td>
+                    <td>{{movie.Movies_cont.title}}</td>
+                    <td>{{movie.quantity}}</td>
+                    <td>$ {{movie.Movies_cont.price}}</td>
+                </tr>
+                {% endfor %}
+                <label>Orden Total: $ {{success_order.order_total}}</label>
+              </div>
+              <div class="row">
+                {% if success_order.delivery_cost == 0.00 %}
+                <label>
+                  <p class="text-success">Free Delivery</p>
+                </label>
+                {% else %}
+                <label>Delivery ${{success_order.delivery_cost}}</label>
+                {% endif %}
+              </div>
+              <div class="row">
+                <label>Grand Total: ${{success_order.grand_total}}</label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 order-md-1">
+        <h5 class="mb-3">Your number order: #<p class="text-primary">{{success_order}}</p></h5>
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="firstName">Name: </label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.full_name}} </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="firstName">Number Phone: </label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.phone_number}} </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="firstName">Email: </label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.email}} </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="firstName">Address: </label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.street_address1}} </p>
+          </div>
+        </div>
+
+        {% if success_order.street_address1 %}
+        <div class="row">
+          <div class="col-3 col-sm-3">
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.street_addresss}} </p>
+          </div>
+        </div>
+        {% endif %}
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="country">Country:</label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.country}} </p>
+          </div>
+        </div>
+        <div class="mb-3">
+        </div>
+
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="country">State:</label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.county}} </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="country">Town or City:</label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.town_or_city}} </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3 col-sm-3">
+            <label for="country">Post code:</label>
+          </div>
+          <div class="col-3 col-sm-3">
+            <p class="text-dark">{{success_order.postcade}} </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <button type="button" class="btn btn-success">Continue shopping</button>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-    {% endblock %}
 
-
+{% endblock %}

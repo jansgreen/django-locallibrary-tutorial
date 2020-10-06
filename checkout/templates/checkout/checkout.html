@@ -46,12 +46,12 @@
         <tr>
           <td>
           <div class="text-success">
-            {% if delivery == '0' %}
+            {% if delivery == 0 %}
             <td>
-            <h6 class="my-0">Free Delivery</h6>
-          </td>
+              <p class="text-success">Free Delivery</p>
+            </td>
         <td>
-            <small>$ 0</small>
+            <small>$  {{delivery }}</small>
           </td>
             {% else %}
           <td>
@@ -71,6 +71,7 @@
       </td>
       <td>
         <strong>$ {{grand_total |intcomma }}</strong>
+        <strong></strong>
 
       </td>
 
@@ -186,7 +187,11 @@
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="form-validation.js"></script>
 </div>
-
+<div id="loading-overlay">
+<div class="spinner-border text-primary" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+</div>
 {% endblock %}
 {% block postloadjs %}
 {{block.super}}

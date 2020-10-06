@@ -16,14 +16,15 @@ import stripe
 def checkout(request):
     stripe_public_key = 'pk_test_0p4jqeiFYPzrkeRsn0iQdaSO00VNNlhS7K'#settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = 'sk_test_RTba6nZ1WHPp4rAX65VasJL600Uc7R8pg2'#settings.STRIPE_SECRET_KEY
+
     if request.method == 'POST':
         bag = request.session.get('bag', {})
         #for details in my_movies(request):
-        #    print(int(details['total']))
-        #    print(int(details['delivery']))
-        #    print(int(details['grand_total']))
+        #    order_total= int(details['total'])
+        #    delivery_cost = int(details['delivery'])
+        #    grand_total = int(details['grand_total'])
 
-         #   pass
+         
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -34,6 +35,7 @@ def checkout(request):
             'town_or_city': request.POST['town_or_city'],
             'street_address1': request.POST['street_address1'],
             'street_address2': request.POST['street_address2'],
+
         }
 
         order_form = OrderForm(form_data)
@@ -54,10 +56,6 @@ def checkout(request):
                             Movie = movie,
                             quantity = quantity,
                         )
-                        print("profundidad 5")
-                        print(order)
-                        print(movie)
-                        print(quantity)
                         Order_Line.save()
                 except Movies.DoesNotExist:
                     messages.error(request, " The movie not exist, the order will be cancel")
@@ -88,7 +86,8 @@ def checkout(request):
     order_form = OrderForm()
     template = 'checkout/checkout.html'
 
-    context = {
+
+    context = { 
         'order_form': order_form,
         'stripe_public_key' : stripe_public_key,
         'client_secret' : stripe_secret_key,
@@ -111,7 +110,7 @@ def checkout_success(request, order_number):
     template = 'checkout_success.html'
 
     context = {
-        'order' : order,
+        'success_order':success_order,
     }
 
     return render (request, template, context) 

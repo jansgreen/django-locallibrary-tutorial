@@ -1,3 +1,5 @@
+
+
 // A reference to Stripe.js initialized with your real test publishable API key.
 var PublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_stripe_client_secret').text().slice(1, -1);
@@ -32,7 +34,6 @@ card.addEventListener("change", function (event) {
 /* form submit*/
 
 var form = document.querySelector("payment-form");
-console.log(form + " Entrando a profudidades");
 
 form.addEventListener('submit', function(ev) {
   ev.preventDefault();
@@ -51,7 +52,6 @@ form.addEventListener('submit', function(ev) {
         $("#submit-button").attr("disabled", true);
       } else {
         if (result.paymentIntent.status === "succeeded") {
-          console.log(form);
           form.submit();
           // Complete payment when the submit button is clicked
 
