@@ -14,8 +14,8 @@ import stripe
 
 # Create your views here.
 def checkout(request):
-    stripe_public_key = 'pk_test_0p4jqeiFYPzrkeRsn0iQdaSO00VNNlhS7K'#settings.STRIPE_PUBLIC_KEY
-    stripe_secret_key = 'sk_test_RTba6nZ1WHPp4rAX65VasJL600Uc7R8pg2'#settings.STRIPE_SECRET_KEY
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
